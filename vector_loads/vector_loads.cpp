@@ -69,7 +69,10 @@ static void vectorized_load(benchmark::State& state){
     state.SetBytesProcessed(state.iterations() * data.size() * sizeof(T));
 }
 
-BENCHMARK(normal_load<float>);
-BENCHMARK(vectorized_load<float>);
+
+static constexpr int ITERS = 1000;
+
+BENCHMARK(normal_load<float>)->Iterations(ITERS);;
+BENCHMARK(vectorized_load<float>)->Iterations(ITERS);
 
 BENCHMARK_MAIN();
